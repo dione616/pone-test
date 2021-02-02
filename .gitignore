@@ -1,0 +1,12 @@
+.vscode/
+node_modules/
+
+build/
+dist/
+*.txt
+
+.env
+yarn.lock
+.eslintcache
+.cache
+package-lock.json
