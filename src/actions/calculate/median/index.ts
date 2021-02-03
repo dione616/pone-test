@@ -1,6 +1,5 @@
 export const findMedian = (arr: number[]) => {
   const isEven = arr.length % 2 == 0 ? true : false;
-  console.log(arr.length, isEven);
 
   let median: number;
   if (!isEven) {
