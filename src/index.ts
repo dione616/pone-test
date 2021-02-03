@@ -1,36 +1,38 @@
 import fs from "fs";
-import util from "util";
+import {
+  calculateAverage,
+  findMinMaxNumber,
+  sortArray,
+  findMedian,
+} from "./actions/";
 
 const timeStart = new Date();
 console.log(timeStart);
-const d = fs.readFile("src/data/10m_2021.txt", "utf-8", (error, data) => {
+
+const run = fs.readFile("src/data/10m_2021.txt", "utf-8", (error, data) => {
   if (error) {
     console.error(error);
     return;
   }
 
-  const content = data.split("\n").map(Number);
+  const filteredNumbers = data.split("\n").filter((x) => !isNaN(+x));
+  const content = filteredNumbers.map((x) => +x);
 
-  //find max
-  const [min, max] = findMaxNumber(content);
+  const [min, max] = findMinMaxNumber(content);
+  const average = calculateAverage(content);
+  const sorted = sortArray(content, 0, content.length - 1);
+  const median = findMedian(sorted);
+
   console.log(`MAX is : ${max}`);
   console.log(`MIN is : ${min}`);
-  const timeFinish = new Date();
+  console.log(`AVERAGE is : ${average}`);
+  console.log(`MEDIAN is : ${median}`);
 
+  //calculate time
+  const timeFinish = new Date();
   console.log(timeFinish);
   let result = timeFinish.getTime() - timeStart.getTime();
   console.log(result / 1000);
 });
 
-const findMaxNumber = (data: number[]) => {
-  let max = data[0]; //consdier the first elem as the maximum
-  let min = data[0]; //consdier the first elem as the minimum
-
-  for (let i = 1; i < data.length; i++) {
-    let currentItterationValue = data[i];
-    max = max > currentItterationValue ? max : currentItterationValue;
-    min = min < currentItterationValue ? min : currentItterationValue;
-  }
-
-  return [min, max];
-};
+export { run };
