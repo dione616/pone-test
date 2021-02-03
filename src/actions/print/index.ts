@@ -1,8 +1,8 @@
 export const printMin = (result: number) => {
-  console.log(`MAX is : ${result}`);
+  console.log(`MIN is : ${result}`);
 };
 export const printMax = (result: number) => {
-  console.log(`MIN is : ${result}`);
+  console.log(`MAX is : ${result}`);
 };
 export const printAverage = (result: number) => {
   console.log(`AVERAGE is : ${result}`);
